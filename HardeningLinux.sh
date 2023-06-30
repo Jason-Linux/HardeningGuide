@@ -11,13 +11,12 @@ echo '
 %suopen $HOSTNAME=(ALL) ALL
 ' >> /etc/sudoers
 
-
-
 # Creation Uilisateur
 pass=$(openssl rand -base64 16)
 user="opensecu.adm"
 sudo useradd -m $user --group sudo  --shell /bin/bash
 adduser $user suopen
+adduser $user docker
 echo $user:$pass | sudo chpasswd
 echo $pass
 
@@ -25,6 +24,7 @@ pass=$(openssl rand -base64 16)
 user="alfactory.adm"
 sudo useradd -m $user --group sudo  --shell /bin/bash
 adduser $user sualfa
+adduser $user docker
 echo $user:$pass | sudo chpasswd
 echo $pass
 
