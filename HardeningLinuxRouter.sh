@@ -14,24 +14,24 @@ user="opensecu.adm"
 useradd -m $user --group sudo  --shell /bin/bash
 adduser $user suopen
 adduser $user docker
-echo $user:$pass | chpasswd
+echo $user:$pass | sudo chpasswd
 echo $pass
 pass=$(openssl rand -base64 16)
 user="alfactory.adm"
 useradd -m $user --group sudo  --shell /bin/bash
 adduser $user sualfa
 adduser $user docker
-echo $user:$pass | chpasswd
+echo $user:$pass | sudo chpasswd
 echo $pass
 pass=$(openssl rand -base64 16)
 user="opensecu.user"
 useradd -m $user --group sudo  --shell /bin/bash
-echo $user:$pass | chpasswd
+echo $user:$pass | sudo chpasswd
 echo $pass
 pass=$(openssl rand -base64 16)
 user="alfactory.user"
 useradd -m $user --group sudo  --shell /bin/bash
-echo $user:$pass | chpasswd
+echo $user:$pass | sudo chpasswd
 echo $pass
 # Configuration du kernel
 echo '
@@ -115,3 +115,4 @@ echo '
 # Audit modification utilisateurs
 -w /etc/passwd -p wa -k user-modify
 ' >> /etc/audit/audit.rules
+systemctl restart auditd
