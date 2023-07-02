@@ -1,53 +1,45 @@
 #!/bin/bash
-
 # Creation groupe
 groupadd sualfa
 groupadd suopen
-
 # Droit Sudo
 apt install sudo
 echo '
 %sualfa $HOSTNAME=(ALL) ALL
 %suopen $HOSTNAME=(ALL) ALL
 ' >> /etc/sudoers
-
 # Creation Uilisateur
 pass=$(openssl rand -base64 16)
 user="opensecu.adm"
-sudo useradd -m $user --group sudo  --shell /bin/bash
+useradd -m $user --group sudo  --shell /bin/bash
 adduser $user suopen
 adduser $user docker
-echo $user:$pass | sudo chpasswd
+echo $user:$pass | chpasswd
 echo $pass
-
 pass=$(openssl rand -base64 16)
 user="alfactory.adm"
-sudo useradd -m $user --group sudo  --shell /bin/bash
+useradd -m $user --group sudo  --shell /bin/bash
 adduser $user sualfa
 adduser $user docker
-echo $user:$pass | sudo chpasswd
+echo $user:$pass | chpasswd
 echo $pass
-
 pass=$(openssl rand -base64 16)
 user="opensecu.user"
-sudo useradd -m $user --group sudo  --shell /bin/bash
-echo $user:$pass | sudo chpasswd
+useradd -m $user --group sudo  --shell /bin/bash
+echo $user:$pass | chpasswd
 echo $pass
-
 pass=$(openssl rand -base64 16)
 user="alfactory.user"
-sudo useradd -m $user --group sudo  --shell /bin/bash
-echo $user:$pass | sudo chpasswd
+useradd -m $user --group sudo  --shell /bin/bash
+echo $user:$pass | chpasswd
 echo $pass
-
 # Configuration du kernel
-sudo echo '
+echo '
 # Configuration du kernel
 kernel_module_disabled=1
 kernel.yama.ptrace_scope=2' >> /etc/sysctl.conf
-
 # Configuration de la configuration réseaux
-sudo echo '
+echo '
 # Configuration de la configuration réseaux
 # IPV4
 net.core.bpf_jit_harden=2
@@ -77,11 +69,9 @@ net.ipv4.tcp_syncookies=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.all.disable_ipv6=1
 ' >> /etc/sysctl.conf
-
 echo 'GRUB_CMDLINE_LINUX=" ipv6.disable=1"' /etc/default/grub
-
 # Configuration système de fichier
-sudo echo '
+echo '
 # Configuration système de fichier
 fs.suid_dumpable = 0
 fs.protected_fifos=2
@@ -89,14 +79,11 @@ fs.protected_regular=2
 fs.protected_symlinks=1
 fs.protected_hardinks=1
 ' >> /etc/sysctl.conf
-
 # Conf SSH mis à la main
-
 # Service Audit
-sudo apt install auditd
-
+apt install auditd
 # Configuration Auditd
-sudo echo '
+echo '
 # Exécution de insmod , rmmod et modprobe
 -w /sbin/insmod -p x
 -w /sbin/modprobe -p x
@@ -128,4 +115,3 @@ sudo echo '
 # Audit modification utilisateurs
 -w /etc/passwd -p wa -k user-modify
 ' >> /etc/audit/audit.rules
-
