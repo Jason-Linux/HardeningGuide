@@ -34,12 +34,11 @@ sudo useradd -m $user --group sudo  --shell /bin/bash
 echo $user:$pass | sudo chpasswd
 echo $pass
 # Configuration du kernel
-sudo echo '
+echo '
 # Configuration du kernel
-kernel_module_disabled=1
 kernel.yama.ptrace_scope=2' >> /etc/sysctl.conf
 # Configuration de la configuration réseaux
-sudo echo '
+echo '
 # Configuration de la configuration réseaux
 # IPV4
 net.core.bpf_jit_harden=2
@@ -69,9 +68,9 @@ net.ipv4.tcp_syncookies=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.all.disable_ipv6=1
 ' >> /etc/sysctl.conf
-echo 'GRUB_CMDLINE_LINUX=" ipv6.disable=1"' /etc/default/grub
+echo 'GRUB_CMDLINE_LINUX=" ipv6.disable=1"' >> /etc/default/grub
 # Configuration système de fichier
-sudo echo '
+echo '
 # Configuration système de fichier
 fs.suid_dumpable = 0
 fs.protected_fifos=2
@@ -81,9 +80,9 @@ fs.protected_hardinks=1
 ' >> /etc/sysctl.conf
 # Conf SSH mis à la main
 # Service Audit
-sudo apt install auditd
+apt install auditd
 # Configuration Auditd
-sudo echo '
+echo '
 # Exécution de insmod , rmmod et modprobe
 -w /sbin/insmod -p x
 -w /sbin/modprobe -p x

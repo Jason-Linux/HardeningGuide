@@ -36,7 +36,6 @@ echo $pass
 # Configuration du kernel
 echo '
 # Configuration du kernel
-kernel_module_disabled=1
 kernel.yama.ptrace_scope=2' >> /etc/sysctl.conf
 # Configuration de la configuration réseaux
 echo '
@@ -69,7 +68,7 @@ net.ipv4.tcp_syncookies=1
 net.ipv6.conf.default.disable_ipv6=1
 net.ipv6.conf.all.disable_ipv6=1
 ' >> /etc/sysctl.conf
-echo 'GRUB_CMDLINE_LINUX=" ipv6.disable=1"' /etc/default/grub
+echo 'GRUB_CMDLINE_LINUX=" ipv6.disable=1"' >> /etc/default/grub
 # Configuration système de fichier
 echo '
 # Configuration système de fichier
