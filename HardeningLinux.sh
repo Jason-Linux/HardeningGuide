@@ -113,5 +113,5 @@ echo '
 -e 2
 # Audit modification utilisateurs
 -w /etc/passwd -p wa -k user-modify
-' >> /etc/audit/audit.rules
+' >> /etc/audit/rules.d/audit.rules
 systemctl restart auditd
