@@ -6,6 +6,10 @@ VOUS UTILISEZ CE SCRIPT EN VOTRE AME ET CONFIANCE ET JE ME DEDOUANE DE TOUTE RES
 
 Actuellement il faut copier coller chaque section l'execution du script ne fonctionne pas
 
+# Reste a faire
+SELINUX
+SCRIPT AUTOMATISER
+ENVOIE Les Couple User mot de passe
 
 # Sources
 I used ANSSI documentation and some articles on different website.

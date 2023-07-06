@@ -115,3 +115,8 @@ echo '
 -w /etc/passwd -p wa -k user-modify
 ' >> /etc/audit/rules.d/audit.rules
 systemctl restart auditd
+
+#apt-get install selinux-basics selinux-policy-default
+#selinux-activate
+#setenforce 1
+#sed -i 's/SELINUX=permissive/SELINUX=enforcing/g' /etc/selinux/config
